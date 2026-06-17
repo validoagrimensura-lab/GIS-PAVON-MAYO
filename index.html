@@ -36,11 +36,12 @@
         <script src="js/labels.js"></script>
         <script src="js/leaflet.photon.js"></script>
         <script src="data/CATASTROPU2025_1.js"></script>
-        <script src="data/CATASTRODeudores_06_2026actualizado_2.js"></script>
+        <script src="data/CATASTROParcelasdeudora06_2026_2.js"></script>
+        <script src="data/CATASTROBaldos_crticos_3.js"></script>
         <script>
         var map = L.map('map', {
             zoomControl:false, maxZoom:28, minZoom:1
-        }).fitBounds([[-33.24522901287963,-60.40856017540539],[-33.23866204015192,-60.397943043858874]]);
+        }).fitBounds([[-33.23854952868242,-60.432734549611986],[-33.23197462858106,-60.42037771684581]]);
         var hash = new L.Hash(map);
         map.attributionControl.setPrefix('<a href="https://github.com/qgis2web/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
         var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
@@ -127,16 +128,16 @@
         function pop_CATASTROPU2025_1(feature, layer) {
             var popupContent = '<table>\
                     <tr>\
-                        <th scope="row">PARTIDA</th>\
-                        <td>' + (feature.properties['PARTIDA'] !== null ? autolinker.link(String(feature.properties['PARTIDA']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
                         <th scope="row">PADRON_PU</th>\
                         <td>' + (feature.properties['PADRON_PU'] !== null ? autolinker.link(String(feature.properties['PADRON_PU']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
                         <th scope="row">2026_Tit. Nombre</th>\
                         <td>' + (feature.properties['2026_Tit. Nombre'] !== null ? autolinker.link(String(feature.properties['2026_Tit. Nombre']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">2026_Partida Prov.</th>\
+                        <td>' + (feature.properties['2026_Partida Prov.'] !== null ? autolinker.link(String(feature.properties['2026_Partida Prov.']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
                         <th scope="row">2026_Manzana</th>\
@@ -147,8 +148,16 @@
                         <td>' + (feature.properties['2026_Lote'] !== null ? autolinker.link(String(feature.properties['2026_Lote']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <th scope="row">DEUDAS 05_2026Ctas</th>\
-                        <td>' + (feature.properties['DEUDAS 05_2026Ctas'] !== null ? autolinker.link(String(feature.properties['DEUDAS 05_2026Ctas']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                        <th scope="row">2026_Anexo Titular</th>\
+                        <td>' + (feature.properties['2026_Anexo Titular'] !== null ? autolinker.link(String(feature.properties['2026_Anexo Titular']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">DEUDAS 06_Ctas</th>\
+                        <td>' + (feature.properties['DEUDAS 06_Ctas'] !== null ? autolinker.link(String(feature.properties['DEUDAS 06_Ctas']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">DEUDAS 06_Total</th>\
+                        <td>' + (feature.properties['DEUDAS 06_Total'] !== null ? autolinker.link(String(feature.properties['DEUDAS 06_Total']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
                 </table>';
             var content = removeEmptyRowsFromPopupContent(popupContent, feature);
@@ -187,7 +196,125 @@
         });
         bounds_group.addLayer(layer_CATASTROPU2025_1);
         map.addLayer(layer_CATASTROPU2025_1);
-        function pop_CATASTRODeudores_06_2026actualizado_2(feature, layer) {
+        function pop_CATASTROParcelasdeudora06_2026_2(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <th scope="row">PADRON_PU</th>\
+                        <td>' + (feature.properties['PADRON_PU'] !== null ? autolinker.link(String(feature.properties['PADRON_PU']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">2026_Tit. Nombre</th>\
+                        <td>' + (feature.properties['2026_Tit. Nombre'] !== null ? autolinker.link(String(feature.properties['2026_Tit. Nombre']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">2026_Partida Prov.</th>\
+                        <td>' + (feature.properties['2026_Partida Prov.'] !== null ? autolinker.link(String(feature.properties['2026_Partida Prov.']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">2026_Manzana</th>\
+                        <td>' + (feature.properties['2026_Manzana'] !== null ? autolinker.link(String(feature.properties['2026_Manzana']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">2026_Lote</th>\
+                        <td>' + (feature.properties['2026_Lote'] !== null ? autolinker.link(String(feature.properties['2026_Lote']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">2026_Anexo Titular</th>\
+                        <td>' + (feature.properties['2026_Anexo Titular'] !== null ? autolinker.link(String(feature.properties['2026_Anexo Titular']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">DEUDAS 06_Ctas</th>\
+                        <td>' + (feature.properties['DEUDAS 06_Ctas'] !== null ? autolinker.link(String(feature.properties['DEUDAS 06_Ctas']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">DEUDAS 06_Total</th>\
+                        <td>' + (feature.properties['DEUDAS 06_Total'] !== null ? autolinker.link(String(feature.properties['DEUDAS 06_Total']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            var content = removeEmptyRowsFromPopupContent(popupContent, feature);
+			layer.on('popupopen', function(e) {
+				addClassToPopupIfMedia(content, e.popup);
+			});
+			layer.bindPopup(content, { maxHeight: 400 });
+        }
+
+        function style_CATASTROParcelasdeudora06_2026_2_0(feature) {
+            if (feature.properties['DEUDAS 06_Ctas'] >= 1.000000 && feature.properties['DEUDAS 06_Ctas'] <= 6.000000 ) {
+                return {
+                pane: 'pane_CATASTROParcelasdeudora06_2026_2',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(31,220,28,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['DEUDAS 06_Ctas'] >= 6.000000 && feature.properties['DEUDAS 06_Ctas'] <= 12.000000 ) {
+                return {
+                pane: 'pane_CATASTROParcelasdeudora06_2026_2',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(255,231,19,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['DEUDAS 06_Ctas'] >= 12.000000 && feature.properties['DEUDAS 06_Ctas'] <= 24.000000 ) {
+                return {
+                pane: 'pane_CATASTROParcelasdeudora06_2026_2',
+                opacity: 1,
+                color: 'rgba(0,0,0,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(255,92,39,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['DEUDAS 06_Ctas'] >= 24.000000 && feature.properties['DEUDAS 06_Ctas'] <= 200.000000 ) {
+                return {
+                pane: 'pane_CATASTROParcelasdeudora06_2026_2',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(236,0,16,1.0)',
+                interactive: true,
+            }
+            }
+        }
+        map.createPane('pane_CATASTROParcelasdeudora06_2026_2');
+        map.getPane('pane_CATASTROParcelasdeudora06_2026_2').style.zIndex = 402;
+        map.getPane('pane_CATASTROParcelasdeudora06_2026_2').style['mix-blend-mode'] = 'normal';
+        var layer_CATASTROParcelasdeudora06_2026_2 = new L.geoJson(json_CATASTROParcelasdeudora06_2026_2, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_CATASTROParcelasdeudora06_2026_2',
+            layerName: 'layer_CATASTROParcelasdeudora06_2026_2',
+            pane: 'pane_CATASTROParcelasdeudora06_2026_2',
+            onEachFeature: pop_CATASTROParcelasdeudora06_2026_2,
+            style: style_CATASTROParcelasdeudora06_2026_2_0,
+        });
+        bounds_group.addLayer(layer_CATASTROParcelasdeudora06_2026_2);
+        map.addLayer(layer_CATASTROParcelasdeudora06_2026_2);
+        function pop_CATASTROBaldos_crticos_3(feature, layer) {
             var popupContent = '<table>\
                 </table>';
             var content = removeEmptyRowsFromPopupContent(popupContent, feature);
@@ -197,82 +324,42 @@
 			layer.bindPopup(content, { maxHeight: 400 });
         }
 
-        function style_CATASTRODeudores_06_2026actualizado_2_0(feature) {
-            if (feature.properties['DEUDAS 05_2026Ctas'] >= 1.000000 && feature.properties['DEUDAS 05_2026Ctas'] <= 6.000000 ) {
-                return {
-                pane: 'pane_CATASTRODeudores_06_2026actualizado_2',
+        function style_CATASTROBaldos_crticos_3_0() {
+            return {
+                pane: 'pane_CATASTROBaldos_crticos_3',
+                radius: 4.0,
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
                 dashArray: '',
                 lineCap: 'butt',
                 lineJoin: 'miter',
-                weight: 1.0, 
+                weight: 1,
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(32,195,14,1.0)',
+                fillColor: 'rgba(0,0,0,1.0)',
                 interactive: false,
-            }
-            }
-            if (feature.properties['DEUDAS 05_2026Ctas'] >= 6.000000 && feature.properties['DEUDAS 05_2026Ctas'] <= 12.000000 ) {
-                return {
-                pane: 'pane_CATASTRODeudores_06_2026actualizado_2',
-                opacity: 1,
-                color: 'rgba(35,35,35,1.0)',
-                dashArray: '',
-                lineCap: 'butt',
-                lineJoin: 'miter',
-                weight: 1.0, 
-                fill: true,
-                fillOpacity: 1,
-                fillColor: 'rgba(255,232,43,1.0)',
-                interactive: false,
-            }
-            }
-            if (feature.properties['DEUDAS 05_2026Ctas'] >= 12.000000 && feature.properties['DEUDAS 05_2026Ctas'] <= 24.000000 ) {
-                return {
-                pane: 'pane_CATASTRODeudores_06_2026actualizado_2',
-                opacity: 1,
-                color: 'rgba(35,35,35,1.0)',
-                dashArray: '',
-                lineCap: 'butt',
-                lineJoin: 'miter',
-                weight: 1.0, 
-                fill: true,
-                fillOpacity: 1,
-                fillColor: 'rgba(245,89,14,1.0)',
-                interactive: false,
-            }
-            }
-            if (feature.properties['DEUDAS 05_2026Ctas'] >= 24.000000 && feature.properties['DEUDAS 05_2026Ctas'] <= 200.000000 ) {
-                return {
-                pane: 'pane_CATASTRODeudores_06_2026actualizado_2',
-                opacity: 1,
-                color: 'rgba(35,35,35,1.0)',
-                dashArray: '',
-                lineCap: 'butt',
-                lineJoin: 'miter',
-                weight: 1.0, 
-                fill: true,
-                fillOpacity: 1,
-                fillColor: 'rgba(210,0,0,1.0)',
-                interactive: false,
-            }
             }
         }
-        map.createPane('pane_CATASTRODeudores_06_2026actualizado_2');
-        map.getPane('pane_CATASTRODeudores_06_2026actualizado_2').style.zIndex = 402;
-        map.getPane('pane_CATASTRODeudores_06_2026actualizado_2').style['mix-blend-mode'] = 'normal';
-        var layer_CATASTRODeudores_06_2026actualizado_2 = new L.geoJson(json_CATASTRODeudores_06_2026actualizado_2, {
+        map.createPane('pane_CATASTROBaldos_crticos_3');
+        map.getPane('pane_CATASTROBaldos_crticos_3').style.zIndex = 403;
+        map.getPane('pane_CATASTROBaldos_crticos_3').style['mix-blend-mode'] = 'normal';
+        var layer_CATASTROBaldos_crticos_3 = new L.geoJson(json_CATASTROBaldos_crticos_3, {
             attribution: '',
             interactive: false,
-            dataVar: 'json_CATASTRODeudores_06_2026actualizado_2',
-            layerName: 'layer_CATASTRODeudores_06_2026actualizado_2',
-            pane: 'pane_CATASTRODeudores_06_2026actualizado_2',
-            onEachFeature: pop_CATASTRODeudores_06_2026actualizado_2,
-            style: style_CATASTRODeudores_06_2026actualizado_2_0,
+            dataVar: 'json_CATASTROBaldos_crticos_3',
+            layerName: 'layer_CATASTROBaldos_crticos_3',
+            pane: 'pane_CATASTROBaldos_crticos_3',
+            onEachFeature: pop_CATASTROBaldos_crticos_3,
+            pointToLayer: function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.circleMarker(latlng, style_CATASTROBaldos_crticos_3_0(feature));
+            },
         });
-        bounds_group.addLayer(layer_CATASTRODeudores_06_2026actualizado_2);
-        map.addLayer(layer_CATASTRODeudores_06_2026actualizado_2);
+        bounds_group.addLayer(layer_CATASTROBaldos_crticos_3);
+        map.addLayer(layer_CATASTROBaldos_crticos_3);
         setBounds();
         resetLabels([layer_CATASTROPU2025_1]);
         map.on("zoomend", function(){
